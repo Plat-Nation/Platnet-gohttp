@@ -2,6 +2,14 @@ github.com/Plat-Nation/BookRecs-Middleware v0.1.0 h1:63smtseFgfcYvyqdjNV08KYKkls
 github.com/Plat-Nation/BookRecs-Middleware v0.1.0/go.mod h1:f3Fm1qhQDQrGOEznqBKesoNP9hooedFcVygUOegVuVw=
 github.com/Plat-Nation/BookRecs-Middleware v0.2.0 h1:eeZRQLxSJGfeMv5KVLpByaiTcdxYRtKSfSeplLALueY=
 github.com/Plat-Nation/BookRecs-Middleware v0.2.0/go.mod h1:xJ1/zNDDHsImt5I2eo8TVSQUO7aAYEMPZ/qRbPqeId0=
+github.com/Plat-Nation/BookRecs-Middleware v0.2.1 h1:1Du9TGJ98nbc3WCX+2EoMJaAiseHHPrI+TewZSV4Etg=
+github.com/Plat-Nation/BookRecs-Middleware v0.2.1/go.mod h1:xJ1/zNDDHsImt5I2eo8TVSQUO7aAYEMPZ/qRbPqeId0=
+github.com/Plat-Nation/BookRecs-Middleware v0.2.2 h1:Y7ULcGS/AFOFEhizU6X4CN4U4u1XCZXvy1V7oFlsYbE=
+github.com/Plat-Nation/BookRecs-Middleware v0.2.2/go.mod h1:xJ1/zNDDHsImt5I2eo8TVSQUO7aAYEMPZ/qRbPqeId0=
+github.com/Plat-Nation/BookRecs-Middleware v0.2.3 h1:7KVWB7yFvIGsd9+NLblixlJlqSfE0lmcAbvxv4+TU3Q=
+github.com/Plat-Nation/BookRecs-Middleware v0.2.3/go.mod h1:xJ1/zNDDHsImt5I2eo8TVSQUO7aAYEMPZ/qRbPqeId0=
+github.com/Plat-Nation/BookRecs-Middleware v0.2.4 h1:kBK1k1+UJ/zPujXpUK1Ukh3FlTxzNiYCdpj8jvrYFuA=
+github.com/Plat-Nation/BookRecs-Middleware v0.2.4/go.mod h1:xJ1/zNDDHsImt5I2eo8TVSQUO7aAYEMPZ/qRbPqeId0=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/golang-jwt/jwt/v4 v4.5.0 h1:7cYmW1XlMY7h7ii7UhUyChSgS5wUJEnm9uZVTGqOWzg=
