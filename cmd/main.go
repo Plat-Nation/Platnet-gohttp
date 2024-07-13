@@ -3,38 +3,32 @@ package main
 import (
 	"net/http"
 
-	"github.com/Plat-Nation/BookRecs-Middleware/auth"
-	"github.com/Plat-Nation/BookRecs-Middleware/log"
+	middleware "github.com/Plat-Nation/BookRecs-Middleware/core"
 	complexRoute "github.com/Plat-Nation/Platnet-gohttp/internal/complexRoute"
 	"go.uber.org/zap"
+	"go.uber.org/zap/zapcore"
 )
 
-// Initialize a sugared zap logger, which is easy to use
-func initLogger() *zap.SugaredLogger {
-	// We create a Production logger in zap, which writes structured JSON logs
-	// If you want to just log something for testing, you can use NewDevelopment() to write the logs in a Human-friendly format
-	// All logs go to stderr
-	// Must() is used to panic if an zap.newProduction() returns an error, rather than handling it
-	logger := zap.Must(zap.NewProduction())
-	// We can use Sugar() to wrap our logger in an easier to use API, although it won't be quite as fast
-	// This allows us to use logger.Infof("log"), rather than structuring the entire log and all key value pairs
-	sugar := logger.Sugar()
-	return sugar
-}
-
 // Example route handler
-func indexHandler(logger *zap.SugaredLogger) http.HandlerFunc{
+func IndexHandler(mw *middleware.Middleware) http.Handler{
 	// Our handler function can take whatever arguments we want, and then return a HandlerFunc, which can only have (w, r) for arguments
 	// We can use a closure (anonymous function) to create the HandlerFunc right here:
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		// Use the sugared logger
-		logger.Infof("Something happened")
-
 		// Use the log middleware, http request information will be included automatically
-		// Log() takes in the request itself, a message, and then however many zap fields you want to include, in  this case demo data
-		log.Log(r, "Something else happened", zap.String("username", "totallyauser"), zap.Int("numOfInfo", 1))
+		// Log() takes in the request itself, a message, and then optionally however many zap fields you want to include, in  this case demo data
+		mw.Log(r, "Something else happened", zap.String("username", "totallyauser"), zap.Int("numOfInfo", 1))
+
+		// If we don't have much to log, we can keep it really simple too
+		mw.Log(r, "Simple log")
+
+		// We can also get the logger directly from the middleware object if we want to do something manually, like log an error:
+		exampleErrorMsg := "Failed to complete"
+		mw.LogWithLevel(zapcore.ErrorLevel, r, "An error occured", zap.String("errorMessage", exampleErrorMsg), zap.String("someHelpfulInfoLikeAUsername", "example_username"), zap.Bool("LoggedIn", true))
 
 		// We can use a switch statement like an if statement to run different code in cases where the r.Method is different
+		// If you want to split these out into their own functions you can use a serveMux and include the route in the url you assign to the handler, like:
+		// mux := http.NewServeMux()
+		// mux.Handler("POST /", mw.All(someHandlerFunc(mw)))
 		switch r.Method {
 		case "GET":
 			// For simple routes you can include all the code here
@@ -50,24 +44,34 @@ func indexHandler(logger *zap.SugaredLogger) http.HandlerFunc{
 			responseBody := `{"message": "Hello, world!"}`
 			w.Write([]byte(responseBody))
 		case "POST":
-			// For more complex routes, you can point to a separate function or even another file like this
-			// We import the handler from complexRoute, and then we pass (logger) to the handler and (w, r) to the inner function
-			complexRoute.PostHandler(logger)(w, r)
+			// For more complex routes, you can point to a separate function or even another file like this, although a mux like mentioned above is easier
+			// We import the handler from complexRoute, and then we pass (mw) to the handler and (w, r) to the inner function
+			complexRoute.PostHandler(mw)(w, r)
 		default:
 		}
 	})
 }
 
+func HandlePost(mw *middleware.Middleware) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		// This function will handle any requests from "POST /some-route/{id}"
+		// We can get the value in the id spot like this:
+		idString := r.PathValue("id")
+		w.Write([]byte(idString))
+	})
+}
+
 func main() {
-	logger := initLogger()
-	// We can use "defer" here to save this for when we are done using the logger / exiting the program
-	// In this case, this just makes sure any buffered logs still get printed
-	defer logger.Sync()
-	// Use both middleware on the route
-	http.Handle("/", log.LogAll(auth.Auth(indexHandler(logger))))
-	err := http.ListenAndServe(":8080", nil)
+
+	mw, err := middleware.Init(true, true)
 	if err != nil {
-		logger.Errorf(err.Error())
+		panic(err)
 	}
+
+	// Create a router and serve routes from routes.go
+	mux := http.NewServeMux()
+	AddRoutes(mux, mw)
+
+	http.ListenAndServe(":8080", mux)
 }
 

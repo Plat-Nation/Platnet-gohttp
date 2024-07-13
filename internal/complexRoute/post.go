@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	middleware "github.com/Plat-Nation/BookRecs-Middleware/core"
 	"go.uber.org/zap"
 )
 
@@ -23,7 +24,7 @@ type ExpectedRequest struct {
 
 // Example of a route handler function that can parse a JSON POST request
 // This also needs to be capitalized if it's meant to be public and imported, but other functions can stay lowercase
-func PostHandler(logger *zap.SugaredLogger) http.HandlerFunc {
+func PostHandler(mw *middleware.Middleware) http.HandlerFunc {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 
 		// We initialize a variable called parsedReq of our custom ExpectedRequest type
@@ -34,7 +35,7 @@ func PostHandler(logger *zap.SugaredLogger) http.HandlerFunc {
 		// Note that we use &parsedReq to use the address of the original parsedReq variable, rather than making a copy
 		err := decoder.Decode(&parsedReq)
 		if err != nil {
-			logger.Errorf("Failed to decode JSON body", zap.Error(err))
+			mw.Logger.Error("Failed to decode JSON body", zap.Error(err))
 			// In this case we'll just block the request if we can't parse it properly, but
 			// you could be more flexible about the type here if that fits your use better
 			http.Error(w, "Error: Bad Request", http.StatusBadRequest)
