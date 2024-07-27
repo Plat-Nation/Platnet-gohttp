@@ -13,6 +13,6 @@ func AddRoutes(
 	mux *http.ServeMux,
 	mw *core.Middleware,
 ) {
-	mux.Handle("/", mw.AllNoAuth(IndexHandler(mw))) // We'll have this route be unauthenticated
+	mux.Handle("/", mw.LogAll(IndexHandler(mw))) // We'll have this route be unauthenticated
 	mux.Handle("POST /some-route/{id}",  mw.All(HandlePost(mw)))
 }
