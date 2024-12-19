@@ -1,5 +1,3 @@
-github.com/Plat-Nation/BookRecs-Middleware v0.4.0 h1:lbQNFtuEBlDdD9nESyk/DykFQKFMRXC5OTf9XNmBuuc=
-github.com/Plat-Nation/BookRecs-Middleware v0.4.0/go.mod h1:iqThnFV7Ze2DDzyisb4GLR12EawCx203jgdeJ+uY+uI=
 github.com/Plat-Nation/BookRecs-Middleware v0.4.1 h1:q5opCHD0Pu1qDW3/V2c6E8Cokchwh40P4ceCFS+pUFc=
 github.com/Plat-Nation/BookRecs-Middleware v0.4.1/go.mod h1:iqThnFV7Ze2DDzyisb4GLR12EawCx203jgdeJ+uY+uI=
 github.com/aws/aws-sdk-go v1.54.19 h1:tyWV+07jagrNiCcGRzRhdtVjQs7Vy41NwsuOcl0IbVI=
@@ -9,8 +7,8 @@ github.com/cenkalti/backoff/v4 v4.2.1/go.mod h1:Y3VNntkOUPxTVeUxJ/G5vcM//AlwfmyY
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
-github.com/golang-jwt/jwt/v4 v4.5.0 h1:7cYmW1XlMY7h7ii7UhUyChSgS5wUJEnm9uZVTGqOWzg=
-github.com/golang-jwt/jwt/v4 v4.5.0/go.mod h1:m21LjoU+eqJr34lmDMbreY2eSTRJ1cv77w39/MY0Ch0=
+github.com/golang-jwt/jwt/v4 v4.5.1 h1:JdqV9zKUdtaa9gdPlywC3aeoEsR681PlKC+4F5gQgeo=
+github.com/golang-jwt/jwt/v4 v4.5.1/go.mod h1:m21LjoU+eqJr34lmDMbreY2eSTRJ1cv77w39/MY0Ch0=
 github.com/guregu/dynamo v1.23.0 h1:lKiHpT1Io3DtAxzhgM3+kyidRSk7/u6nld7kgcP6W7U=
 github.com/guregu/dynamo v1.23.0/go.mod h1:a0knvVZrDhT+q7eQlu1n041lf5vPi0sNfGjRh81mAnQ=
 github.com/jmespath/go-jmespath v0.4.0 h1:BEgLn5cpjn8UN1mAw4NjwDrS35OdebyEtFe+9YPoQUg=
