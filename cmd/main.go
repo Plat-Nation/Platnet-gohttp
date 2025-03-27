@@ -10,7 +10,7 @@ import (
 )
 
 // Example route handler
-func IndexHandler(mw *middleware.Middleware) http.Handler{
+func IndexHandler(mw *middleware.Middleware) http.Handler {
 	// Our handler function can take whatever arguments we want, and then return a HandlerFunc, which can only have (w, r) for arguments
 	// We can use a closure (anonymous function) to create the HandlerFunc right here:
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
@@ -74,4 +74,3 @@ func main() {
 
 	http.ListenAndServe(":8080", mux)
 }
-

@@ -1,7 +1,7 @@
 FROM alpine:latest
 
 WORKDIR /app
-COPY ./gohttp .
+COPY . ./gohttp
 
 EXPOSE 8080
 
